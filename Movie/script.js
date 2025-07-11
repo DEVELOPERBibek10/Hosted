@@ -6,21 +6,43 @@ const API_KEY = "75e60d99";
 const searchBox = document.querySelector("#search-box");
 const listContainer = document.querySelector(".movie-list");
 const Info = document.querySelector(".info");
+let reasult = debounce(Movies, 1000);
+searchBox.addEventListener("input", function () {
+  reasult(searchBox.value.trim());
+});
+
+function debounce(func, delay) {
+  let timer;
+  return function (searchText) {
+    clearTimeout(timer);
+    console.log("Cleared");
+    timer = setTimeout(() => {
+      func(searchText);
+    }, delay);
+  };
+  get;
+}
 
 async function Movies(searchText) {
+  if (!searchBox.value.trim()) {
+    fetchMovies(false);
+    return;
+  }
   const response = await fetch(
     `${URL}s=${searchText}&page=1&apikey=${API_KEY}`
   );
   const data = await response.json();
-  console.log(data.Search);
-  if (data.Response == "True") displayList(data.Search);
+  if (data.Response == "True") {
+    displayList(data.Search);
+    fetchMovies(data.Response);
+  } else {
+    fetchMovies(data.Response);
+  }
 }
 
-function fetchMovies() {
-  let searchText = searchBox.value.trim();
-  if (searchText.length > 0) {
+function fetchMovies(response) {
+  if (response) {
     listContainer.classList.remove("hide");
-    Movies(searchText);
   } else {
     listContainer.classList.add("hide");
   }
