@@ -20,7 +20,6 @@ function debounce(func, delay) {
       func(searchText);
     }, delay);
   };
-  get;
 }
 
 async function Movies(searchText) {
