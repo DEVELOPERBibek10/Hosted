@@ -15,7 +15,6 @@ function debounce(func, delay) {
   let timer;
   return function (searchText) {
     clearTimeout(timer);
-    console.log("Cleared");
     timer = setTimeout(() => {
       func(searchText);
     }, delay);
