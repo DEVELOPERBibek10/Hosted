@@ -29,7 +29,6 @@ async function Movies(searchText) {
   const response = await fetch(
     `${URL}s=${searchText}&page=1&apikey=${API_KEY}`
   );
-  console.log("called");
   const data = await response.json();
   if (data.Response == "True") {
     displayList(data.Search);
