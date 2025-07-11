@@ -6,7 +6,7 @@ const API_KEY = "75e60d99";
 const searchBox = document.querySelector("#search-box");
 const listContainer = document.querySelector(".movie-list");
 const Info = document.querySelector(".info");
-let reasult = debounce(Movies, 1000);
+let reasult = debounce(Movies, 500);
 searchBox.addEventListener("input", function () {
   reasult(searchBox.value.trim());
 });
