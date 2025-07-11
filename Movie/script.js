@@ -6,7 +6,7 @@ const API_KEY = "75e60d99";
 const searchBox = document.querySelector("#search-box");
 const listContainer = document.querySelector(".movie-list");
 const Info = document.querySelector(".info");
-let reasult = debounce(Movies, 500);
+let reasult = debounce(Movies, 600);
 searchBox.addEventListener("input", function () {
   reasult(searchBox.value.trim());
 });
@@ -29,6 +29,7 @@ async function Movies(searchText) {
   const response = await fetch(
     `${URL}s=${searchText}&page=1&apikey=${API_KEY}`
   );
+  console.log("called");
   const data = await response.json();
   if (data.Response == "True") {
     displayList(data.Search);
